@@ -1,7 +1,7 @@
 #!/bin/bash
 
-args=(w u h help v m) #list of options that needs only 1 argument
-args2=(s o f)         #list of options that needs 2 arguments
+args=(w u h help v m g) #list of options that needs only 1 argument
+args2=(s o f)           #list of options that needs 2 arguments
 
 #functions
 
@@ -57,6 +57,38 @@ function m() {
         esac
         read -p "Appuyez sur la touche Entrer pour continuer" out
     done
+}
+
+function g() {
+    HEIGHT=200
+    WIDTH=500
+    CHOICE_HEIGHT=7
+    TITLE="Menu"
+    MENU="Choisir une option:"
+
+    OPTIONS=(1 "Afficher les caracteristiques de votre PC"
+        2 "Afficher les caracteristiques de votre cpu"
+        3 "Page d'aide"
+        4 "Sauvegarder les informations les plus pertinentes (en filtrant) dans un fichier"
+        5 "Afficher la verion et les noms des auteurs"
+        6 "Afficher les informations les plus pertinentes dans un fichier"
+        0 "Quitter")
+
+    CHOICE=$(dialog --clear \
+        --title "$TITLE" \
+        --menu "$MENU" \
+        $HEIGHT $WIDTH $CHOICE_HEIGHT \
+        "${OPTIONS[@]}" \
+        2>&1 >/dev/tty)
+
+    clear
+    case $CHOICE in
+    0) exit ;;
+    1) w ;;
+    2) u ;;
+    3) help ;;
+    5) v ;;
+    esac
 }
 
 #main work
