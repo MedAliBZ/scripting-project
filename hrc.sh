@@ -4,7 +4,16 @@ args=(w u h help v)            #list of arguments
 arg1=$(expr substr $1 2 ${#1}) #first argument
 
 #functions
-function help() {
+
+function w() { #option w
+    lshw
+}
+
+function u() { #option v
+    lscpu
+}
+
+function help() { #option help and h
     file='/etc/help.txt'
     echo -e "-w pour la commande lshw
             \n-u pour la commande lscpu
@@ -19,9 +28,11 @@ function help() {
     echo "visiter le fichier /etc/help.txt"
 }
 
-function version() {
+function v() { #option v for version
     echo "version 0.0.1, crée par Mhedhbi Meriam et Bouzaiene Mohamed Ali"
 }
+
+
 
 #main work
 
@@ -31,15 +42,11 @@ elif [[ $(expr substr $1 1 1) != "-" ]]; then #check if first argument starts wi
     echo "Erreur! l'argument doit commencer par \"-\""
 else
     if [[ " ${args[@]} " =~ $arg1 ]]; then #check if the argument is inisde the arguements list
-        #all the work must be done here
-        case $arg1 in
-        w) lshw ;;
-        u) lscpu ;;
-        h) help ;;
-        help) help ;;
-        v) version ;;
-        esac
-
+        if [[ $arg1 == h ]]; then
+            help
+        else
+            $arg1
+        fi
     else
         echo -e "Commande introuvable!\nEssayez hrc -h pour voir la liste des commandes"
     fi
