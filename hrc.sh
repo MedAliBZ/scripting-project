@@ -80,15 +80,35 @@ function graphic() {
     esac
 }
 
+function oAfficherFichier() {
+    if [ -f $1 ]; then
+        cat $1
+        o=true
+        fileF=$OPTARG
+    else
+        o=flase
+        echo "le fichier n'existe pas"
+    fi
+}
+
+function finding() {
+    if [[ $o == true ]]; then
+        echo "-----------------------------------------------"
+        grep -i $1 $fileF
+    else
+        echo "l'option -f doit etre précedé par l'option -o bien fonctionel"
+    fi
+}
+
 #main work
 
 if (test $# == 0); then #check if there is an argument or not
     echo "Erreur! pas d'argument"
-else 
+else
     if [ $(expr substr $1 2 ${#1}) == help ]; then
         help
     else
-        while getopts "wuhvmg" option; do
+        while getopts "wuhvmgo:f:" option; do
             case $option in
             w) hardware ;;
             u) cpu ;;
@@ -96,6 +116,8 @@ else
             v) version ;;
             m) menu ;;
             g) graphic ;;
+            o) oAfficherFichier $OPTARG ;;
+            f) finding $OPTARG ;;
             *) echo "Commande introuvable! Essayez hrc -h pour voir la liste des commandes" ;;
             esac
         done
