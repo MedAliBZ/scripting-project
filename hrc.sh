@@ -15,16 +15,7 @@ function u() { #option v
 
 function help() { #option help and h
     file='/etc/help.txt'
-    echo -e "-w Afficher les caracteristiques de votre PC
-            \n-u Afficher les caracteristiques de votre cpu
-            \n-h ou –help pour afficher le help à partir d’un fichier texte
-            contenant la description de l’application et ses options
-            \n-g pour afficher un menu graphique
-            \n-m pour afficher un menu textuel
-            \n-s FICHIER pour sauvegarder les informations les plus pertinentes (en filtrant) dans un fichier passé en argument
-            \n-v affiche la verion et les noms des auteurs
-            \n-o FICHIER pour afficher les informations les plus pertinentes dans un fichier passé en argument
-            \n-f MOT_CLE pour afficher les lignes contenant le MOT_CLE à partir d’ un fichier. Cette option doit etre utilisé avec l’option -o" >$file
+    cat $file
 }
 
 function v() { #option v for version
@@ -107,7 +98,7 @@ else
         else
             $arg1
         fi
-    elif [[ " ${args1[@]} " =~ $arg1 ]]; then #check if the argument is inisde the second arguements list
+    elif [[ " ${args2[@]} " =~ $arg1 ]]; then #check if the argument is inisde the second arguements list
         if [[ $# != 2 ]]; then                #check if the arguments != 2
             echo "Cette option prend necessairement 2 arguments en parametre"
         fi
