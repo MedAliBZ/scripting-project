@@ -43,6 +43,7 @@ function menu() {
         3) help ;;
         4) graphic ;;
         6) version ;;
+        7) oAfficherFichier ;; # bug here missing arg file name
         esac
         read -p "Appuyez sur la touche Entrer pour continuer" out
     done
@@ -77,6 +78,8 @@ function graphic() {
     2) cpu ;;
     3) help ;;
     5) version ;;
+    6) oAfficherFichier ;; #bug here missing arg file name
+
     esac
 }
 
@@ -86,7 +89,7 @@ function oAfficherFichier() {
         o=true
         fileF=$OPTARG
     else
-        o=flase
+        o=false
         echo "le fichier n'existe pas"
     fi
 }
@@ -108,6 +111,7 @@ else
     if [ $(expr substr $1 2 ${#1}) == help ]; then
         help
     else
+        o=false
         while getopts "wuhvmgo:f:" option; do
             case $option in
             w) hardware ;;
