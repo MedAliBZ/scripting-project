@@ -1,0 +1,21 @@
+Cette application premet principalement d'afficher les caractéristiques hardware de votre machine ainsi que d'autre fonctions secondaires
+
+-w Afficher les caracteristiques de votre PC
+            
+-u Afficher les caracteristiques de votre cpu
+            
+-h ou –help pour afficher le help 
+            
+-g pour afficher un menu graphique
+            
+-m pour afficher un menu textuel
+            
+-s <nom_FICHIER> pour sauvegarder les informations les plus pertinentes (de la commande -w) dans un fichier passé en argument
+            
+-v affiche la verion du systeme ainsi que la version de l'application et les noms de ses auteurs
+            
+-o <nom_FICHIER> pour afficher les informations d'un fichier 
+            
+-f <MOT_CLE> pour afficher les lignes contenant le MOT_CLE à partir d’ un fichier. Cette option doit etre utilisé avec l’option -o example: "-o test.txt -f test"
+
+-j pour afficher les caracteristiques hardware sous format json
